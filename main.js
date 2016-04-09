@@ -143,7 +143,7 @@ function sendFingerprint() {
 		   success: function(data) {
 		   	var d = new Date();
 			var n = d.toString();
-		     $('div#result').html( n + " " + servername + route + " " + JSON.stringify(data) );
+		     $('div#result').html( n + "\n" + JSON.stringify(data["message"]) );
 		   },
 		   error: function(e) {
 		     $('div#result').html('Error: ' + e.message);
@@ -161,14 +161,21 @@ function scanAndSend(results) {
 	currentLocation = results.input1.toLowerCase();
 	if (results.buttonIndex == 1) {
 		clearInterval(scanningInterval);
-		$('div#scanning').html("Scanning for wifi...");
+		var servername = window.localStorage.getItem("server").toLowerCase();
+	        if (servername.slice(-1) != '/') {
+	        	servername += "/";
+	        }
+	        if (servername.indexOf("http") < 0) {
+	        	servername = "http://" + servername;
+	        }
+		$('div#scanning').html("Sending fingerprint to " + servername);
 		scanningInterval = setInterval(sendFingerprint,3000);
 	}
 	toggle = true;
 }
 
 function stopScanning() {
-	$('div#scanning').html("Not scanning");
+	$('div#scanning').html("Scanning stopped.");
 	$('div#result').html("");
 	$('div#sending').html("");
 
