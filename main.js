@@ -36,7 +36,7 @@ function openDashboard() {
     	servername = "http://" + servername;
     }
     var groupname = window.localStorage.getItem("group").toLowerCase();
-	navigator.app.loadUrl(servername + "/login?group=" + groupname, { openExternal:true });
+	navigator.app.loadUrl(servername + "login?group=" + groupname, { openExternal:true });
 }
 
 function makeid()
@@ -114,8 +114,8 @@ function sendFingerprint() {
 		}
 		
 		var data = {
-            "group": "find",
-            "username": "zack",
+            "group": window.localStorage.getItem("group").toLowerCase(),
+            "username": window.localStorage.getItem("username").toLowerCase(),
             "password": "none",
             "location": currentLocation,
             "time": Date.now(),
