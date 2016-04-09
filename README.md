@@ -13,9 +13,22 @@ cp ../appIcon.png platforms/android/res/drawable-mdpi/icon.png
 cp ../appIcon.png platforms/android/res/drawable-ldpi/icon.png
 cp ../appIcon.png platforms/android/res/drawable-xhdpi/icon.png
 
-cp ../index.html platforms/android/assets/www/ && cp ../jquery-1.9.js platforms/android/assets/www/ && cp ../main.js platforms/android/assets/www/ && ./platforms/android/cordova/run --device
+cp ../index.html platforms/android/assets/www/ && cp ../jquery-1.9.js platforms/android/assets/www/ && cp ../main.js platforms/android/assets/www/
+
+./platforms/android/cordova/run --device
 
 ./platforms/android/cordova/build
 ./platforms/android/cordova/run --device
 cp /home/phi/Downloads/cord/find/platforms/android/build/outputs/apk/android-debug.apk ~/Dropbox/android-debug.apk
 ```
+
+
+To build actual app:
+
+```
+Open Android Studio
+Import Project Gradle find->platforms->android 
+Change version code and version name in android/manifests/AndroidManifest.xml
+Build signed APK using keystore Dropbox/keystore/alskasldfk.jks
+```
+
