@@ -169,6 +169,7 @@ function scanAndSend(results) {
             	servername = "http://" + servername;
             }
 		$('div#scanning').html("Sending fingerprint to " + servername);
+		sendFingerprint();
 		scanningInterval = setInterval(sendFingerprint,3000);
 	}
 	toggle = true;
@@ -193,7 +194,7 @@ function setData(datatype,defaultname) {
 				if (results.buttonIndex == 1) {
 					window.localStorage.setItem(datatype,results.input1);
 				}
-				$('h2#user').html(window.localStorage.getItem("username") + " in " + window.localStorage.getItem("group"));
+				$('h2#user').html("Group: " + window.localStorage.getItem("group") + "<br>User: " + window.localStorage.getItem("username"));
 			},                  // callback to invoke
 		    'Set ' + datatype,            // title
 		    ['Ok','Exit'],             // buttonLabels
@@ -247,7 +248,7 @@ function main() {
 	    window.localStorage.setItem('server',servername)
 	} 
 
-	$('h2#user').html(window.localStorage.getItem("username") + " in " + window.localStorage.getItem("group"));
+	$('h2#user').html("Group: " + window.localStorage.getItem("group") + "<br>User: " + window.localStorage.getItem("username"));
 
     // Android customization
     cordova.plugins.backgroundMode.setDefaults({ text:'FIND is running.'});
